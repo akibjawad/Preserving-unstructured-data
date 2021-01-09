@@ -3,7 +3,7 @@ For this reason: I took an unlabeled dataset. Since I need unstructured data, I 
 Data file was bbc.csv.
 I took that file and collected message column of the file. My goal was to modify each message in a way so that, each private information from the original text file is replaced with a fake information in the output. 
 
-Result Observation: 
+Observation summary with few examples form the result: 
 | message in the input file | anonymized message | Comment |
 | ------------------------- | ------------------ | ------- |
 | The letter Malaysia's acting Transport Minister Hishammuddin Hussein was handed during the #MH370 press conference | The letter Laura's acting Transport Minister Brian was handed during the #Mark press conference | Here name of the acting Transport Minister Hishamuddin is replace by Brian, Conference name MH370 replaced with Mark, But one problem it replaced "Malaysia" with a person name "Laura" |
@@ -12,3 +12,7 @@ Result Observation:
 | Are children ready to learn at primary school after leaving nursery care? Ofsted's chief inspector says many are not. | Are children ready to learn at primary school after leaving nursery care? Lindsey's chief inspector says many are not. | Ofsted's -> Lindsey's |
 | BREAKING NEWS: F1 champion Michael Schumacher shows 'moments of consciousness' after months in a coma, his agent has said http://bbc.in/1mP04zD | BREAKING NEWS: F1 champion Michael shows 'moments of consciousness' after some period in a coma, his agent has said http://bbc.in/1mP04zD | Michael Schumacher -> Michael, months-> some period, |
 | Have you ever seen a cross between a goat and a sheep? You have now...Video courtesy of the Irish Farmers | Have you ever seen a cross Meghan? You have now...Video courtesy of Gerald | "a goat and a sheep" -> "Meghan", "Irish Farmers" -> Gerald |
+
+
+Now let's check problems of current model, Current model detects private info correctly, but it sometimes fail to detect type of private info. See Malaysia is replaced by a person's name. To solve this we need train the model with data. which has enough country names. 
+Second problem is sentence meaning is different if we just replace private noun phrases. See the last example, "a goat and a sheep" is replaced by a "person name". 
